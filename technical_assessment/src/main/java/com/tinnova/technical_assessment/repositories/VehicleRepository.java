@@ -10,6 +10,18 @@ import java.util.List;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
-    @Query(value = "SELECT * FROM vehicle WHERE make = :make AND releaseYear = :releaseYear AND color = :color", nativeQuery = true)
-    List<Vehicle> getAllVehicleWithParameters(String make, int releaseYear, String color);
+    @Query(value = "SELECT * FROM vehicle WHERE make = :make AND release_year = :releaseYear AND color = :color", nativeQuery = true)
+    List<Vehicle> getAllVehicleWithParameters(String make, Integer releaseYear, String color);
+
+    @Query(value = "SELECT COUNT(*) FROM vehicle WHERE sold = false", nativeQuery = true)
+    Integer getCountUnsoldVehicles();
+
+    @Query(value = "SELECT COUNT(*) FROM vehicle WHERE release_year >= :startYear AND release_year < :endYear", nativeQuery = true)
+    Integer getCountVehiclesByDecade(Integer startYear, Integer endYear);
+
+    @Query(value = "SELECT COUNT(*) FROM vehicle WHERE make = :make", nativeQuery = true)
+    Integer getCountByMake(String make);
+
+    @Query(value = "SELECT * FROM vehicle WHERE created >= DATEADD('DAY', -7, CURRENT_DATE())", nativeQuery = true)
+    List<Vehicle> getAllRegisteredVehiclesAtLastWeek();
 }

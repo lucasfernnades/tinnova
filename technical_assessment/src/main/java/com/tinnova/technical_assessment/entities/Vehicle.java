@@ -11,8 +11,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -42,76 +42,17 @@ public class Vehicle implements Serializable {
     private LocalDateTime updated;
 
     public boolean validMakesCar(String makeToValidate) {
-        List<String> makesCar = new ArrayList<>();
-        makesCar.add("Abarth");
-        makesCar.add("Aiways");
-        makesCar.add("Alfa Romeo");
-        makesCar.add("Alpine");
-        makesCar.add("Aston Martin");
-        makesCar.add("Audi");
-        makesCar.add("Bentley");
-        makesCar.add("BMW");
-        makesCar.add("BYD");
-        makesCar.add("CAOA Chery");
-        makesCar.add("Chevrolet");
-        makesCar.add("Chrysler");
-        makesCar.add("Citroen");
-        makesCar.add("Cupra");
-        makesCar.add("Dacia");
-        makesCar.add("Dodge");
-        makesCar.add("DS");
-        makesCar.add("Effa");
-        makesCar.add("Ferrari");
-        makesCar.add("Fiat");
-        makesCar.add("Fisker");
-        makesCar.add("Ford");
-        makesCar.add("Foton");
-        makesCar.add("Great Wall");
-        makesCar.add("Haval");
-        makesCar.add("Honda");
-        makesCar.add("Husqvarna");
-        makesCar.add("Hyundai");
-        makesCar.add("Iveco");
-        makesCar.add("JAC");
-        makesCar.add("Jaguar");
-        makesCar.add("Jeep");
-        makesCar.add("Kia");
-        makesCar.add("Lamborghini");
-        makesCar.add("Land Rover");
-        makesCar.add("Lexus");
-        makesCar.add("Lifan");
-        makesCar.add("Lotus");
-        makesCar.add("Maserati");
-        makesCar.add("Mazda");
-        makesCar.add("McLaren");
-        makesCar.add("Mercedes-AMG");
-        makesCar.add("Mercedes-Benz");
-        makesCar.add("Mini");
-        makesCar.add("Mitsubishi");
-        makesCar.add("Nissan");
-        makesCar.add("Opel");
-        makesCar.add("Ora");
-        makesCar.add("Peugeot");
-        makesCar.add("Polestar");
-        makesCar.add("Porsche");
-        makesCar.add("RAM");
-        makesCar.add("Renault");
-        makesCar.add("Rolls-Royce");
-        makesCar.add("Royal Enfield");
-        makesCar.add("SEAT");
-        makesCar.add("Seres");
-        makesCar.add("Subaru");
-        makesCar.add("Suzuki");
-        makesCar.add("Skoda");
-        makesCar.add("Smart");
-        makesCar.add("Tesla");
-        makesCar.add("Toyota");
-        makesCar.add("Triumph");
-        makesCar.add("Troller");
-        makesCar.add("Volkswagen");
-        makesCar.add("Volvo");
-        makesCar.add("Yamaha");
+        Set<String> makesCar = new HashSet<>(Set.of(
+                "abarth", "aiways", "alfa romeo", "alpine", "aston martin", "audi", "bentley", "bmw", "byd",
+                "caoa chery", "chevrolet", "chrysler", "citroen", "cupra", "dacia", "dodge", "ds", "effa",
+                "ferrari", "fiat", "fisker", "ford", "foton", "great wall", "haval", "honda", "husqvarna",
+                "hyundai", "iveco", "jac", "jaguar", "jeep", "kia", "lamborghini", "land rover", "lexus",
+                "lifan", "lotus", "maserati", "mazda", "mclaren", "mercedes-amg", "mercedes-benz", "mini",
+                "mitsubishi", "nissan", "opel", "ora", "peugeot", "polestar", "porsche", "ram", "renault",
+                "rolls-royce", "royal enfield", "seat", "seres", "subaru", "suzuki", "skoda", "smart", "tesla",
+                "toyota", "triumph", "troller", "volkswagen", "volvo", "yamaha"
+        ));
 
-        return makesCar.stream().anyMatch(m -> m.equals(makeToValidate));
+        return makesCar.contains(makeToValidate.toLowerCase());
     }
 }
