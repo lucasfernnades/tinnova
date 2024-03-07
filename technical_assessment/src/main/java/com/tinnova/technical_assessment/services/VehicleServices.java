@@ -226,14 +226,14 @@ public class VehicleServices {
         try {
             Vehicle vehicle = repository.findById(id).orElseThrow();
 
-            if (dto.getMake() != null && !vehicle.validMakesCar(dto.getMake())) {
+            if (!dto.getMake().isEmpty() && !vehicle.validMakesCar(dto.getMake())) {
                 response.setSuccess(false);
                 response.setMessage(INVALID_MAKE);
                 return response;
             }
 
             vehicle.setModel(dto.getModel() == null ? vehicle.getModel() : dto.getModel().toLowerCase());
-            vehicle.setMake(dto.getMake() == null ? vehicle.getMake() : dto.getMake().toLowerCase());
+            vehicle.setMake(dto.getMake() == null || dto.getMake().isEmpty() ? vehicle.getMake() : dto.getMake().toLowerCase());
             vehicle.setReleaseYear(dto.getReleaseYear() == null ? vehicle.getReleaseYear() : dto.getReleaseYear());
             vehicle.setColor(dto.getColor() == null ? vehicle.getColor() : dto.getColor().toLowerCase());
             vehicle.setSold(dto.getSold() == null ? vehicle.getSold() : dto.getSold());
