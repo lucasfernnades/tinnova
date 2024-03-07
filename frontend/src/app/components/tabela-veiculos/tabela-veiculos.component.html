@@ -1,0 +1,91 @@
+<section class="container">
+
+    <h2 class="title">Tabela de Veiculos</h2>
+    <div class="filter">
+        <h3>Filtrar por</h3>
+        <div class="filter-content">
+            <div>
+                <input class="input" type="text" placeholder="Marca" [(ngModel)]="vehicleParameterMake">
+                <input class="input" placeholder="Ano de fabricação" type="number" [(ngModel)]="vehicleParameterReleaseYear">
+                <input class="input" placeholder="Cor" type="text" [(ngModel)]="vehicleParameterColor">
+                <button class="btn_getAllRegistersAtLasWeek btn-enviar" (click)="getAllVehiclesWithParameters()">Enviar</button>
+            </div>
+            <button class="button-tabela-completa" (click)="getAllVehicle()">Atualizar</button>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <tr class="table_head">
+            <th>ID</th>
+            <th>MODELO</th>
+            <th>MARCA</th>
+            <th>ANO DE FABRICAÇÃO</th>
+            <th>COLOR</th>
+            <th>DISPONÍVEL</th>
+            <th></th>
+        </tr>
+        <tr class="table_content" *ngFor="let v of vehicle">
+            <td>{{v.id}}</td>
+            <td>{{v.model}}</td>
+            <td>{{v.make}}</td>
+            <td>{{v.releaseYear}}</td>
+            <td>{{v.color}}</td>
+            <td>{{v.sold}}</td>
+            <td>
+                <button class="btn_remove pointer" (click)="deleteVehicle(v.id)">excluir</button>
+                <button class="btn_edit pointer"
+                    (click)="openModal(v.id, v.model, v.make, v.releaseYear,v.color,  v.sold )">atualizar</button>
+            </td>
+        </tr>
+        <div [ngClass]="{'edit': update == true}">
+            <ng-container *ngIf="update">
+                <img class="img" src="" alt="">
+                <input type="text" name="model" id="" placeholder="" [(ngModel)]="member1.model">
+                <input type="text" name="model" id="" placeholder="" [(ngModel)]="member1.make">
+                <input type="text" name="model" id="" placeholder="" [(ngModel)]="member1.releaseYear">
+                <input type="text" name="model" id="" placeholder="" [(ngModel)]="member1.color">
+                <input type="text" name="model" id="" placeholder="" [(ngModel)]="member1.sold">
+                <div class="container_btn">
+                    <button class="salvar" (click)="editVehicle()">Save</button>
+                </div>
+            </ng-container>
+        </div>
+
+    </table>
+    <div class="adicionar">
+        <p class="sub">Adicionar novo veiculo</p>
+        <form (ngSubmit)="addVehicle()" [formGroup]="vehicleForm">
+            <input class="input" type="text" placeholder="Modelo" formControlName="model">
+            <input class="input" type="text" placeholder="Marca" formControlName="make">
+            <input class="input" type="number" placeholder="Ano de fabricação" formControlName="releaseYear">
+            <input class="input" type="text" placeholder="Cor" formControlName="color">
+            <input type="submit" class="salvar  btn-enviar">
+        </form>
+    </div>
+
+    <div class="container-quant">
+        <p class="sub">Exibir a quantidade de carros da marca:</p>
+        <div>
+            <input  placeholder="Coloque aqui a marca desejada" class="input" type="text" [(ngModel)]="vehicleByMake">
+            <button class="btn_countByMake btn-enviar" (click)="getCountByMake()">Enviar</button>
+        </div>
+        <p class="sub mt">{{this.vehicleByMakeDisplayed}}</p>
+    </div>
+    <div class="container-quant">
+        <p class="sub">Exibir quantidade de carros
+            cadastrados que foram lançados em uma decada especifica</p>
+        <div>
+            <input class="input" type="text" [(ngModel)]="vehicleByDecade">
+            <button class="btn_countByDacade btn-enviar" (click)="getCountVehiclesByDecade()">Enviar</button>
+        </div>
+        <p class="sub mt">{{this.vehicleByDecadeDisplayed}}</p>
+    </div>
+
+    <div class="container-quant">
+
+        <p  >Quantidade de carros não vendidos: </p>
+        <p  >{{vehiclesUnsold}}</p>
+    </div>
+
+</section>

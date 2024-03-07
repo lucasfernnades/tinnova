@@ -1,0 +1,162 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90vw;
+}
+
+.title {
+    font-size: 4rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.filter-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+.button-tabela-completa {
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    margin-right: 0.9rem;
+    margin-top: 2rem;
+}
+
+.button-tabela-completa:hover {
+    cursor: pointer;
+}
+
+
+.input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ffff;
+    font-size: 1.8rem;
+    margin-right: 2rem;
+    padding-top: 0.8rem ;
+    border-radius: 0.3rem 0.3rem 0 0;
+    
+    color: #ffff;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    font-size: 1.5rem;
+}
+
+
+.table {
+    width: 100%;
+    padding: 2rem;
+    border-collapse: collapse;
+    margin: 5rem 0;
+}
+
+.table, th,td {
+    padding: 1rem;
+    font-size: 2rem;
+    color: #ffff;
+}
+
+th {
+    background-color: rgb(0, 0, 0);
+}
+
+tr:nth-child(odd) {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(120,77,228,1) 0%, rgba(218,80,224,1) 100%);
+}
+
+.table_head {
+    background-color: rgb(0, 0, 0);
+    color: #2321c0;
+    align-items: center;
+}
+
+.btn-enviar {
+    border: 1px solid #00f70c;
+    font-size: 2rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    margin-right: 0.9rem;
+    background-color: transparent;
+    color: #00f70c;
+
+}
+
+.btn-enviar:hover {
+    cursor: pointer;
+    background: linear-gradient(0deg, rgb(78, 175, 122) 0%, rgba(17, 77, 25, 0.37) 100%);
+}
+
+.container-quant {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    align-self: start;
+    width: 100%;
+}
+
+.sub {
+    font-size: 2.5rem;
+
+}
+
+.adicionar {
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+    align-items: start;
+    justify-content: start;
+    margin-bottom: 2rem;
+}
+
+.btn_remove {
+    border: 1px solid #f70000;
+    font-size: 2rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    margin-right: 0.9rem;
+    background-color: transparent;
+    color: #ff0707;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+.btn_edit{
+    border: 1px solid #00b1f7;
+    font-size: 2rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    margin-right: 0.9rem;
+    background-color: transparent;
+    color: #00b1f7;
+}
+
+.mt {
+    margin-top: 2rem
+}
