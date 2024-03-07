@@ -124,7 +124,7 @@ public class VehicleServices {
         response.setId(idResponse);
 
         try {
-            response.setData(repository.getCountByMake(make));
+            response.setData(repository.getCountByMake(make.toLowerCase()));
             response.setSuccess(true);
             response.setMessage("success to count the vehicles by the make!");
         }
@@ -232,10 +232,10 @@ public class VehicleServices {
                 return response;
             }
 
-            vehicle.setModel(dto.getModel() == null ? vehicle.getModel() : dto.getModel().toLowerCase());
+            vehicle.setModel(dto.getModel() == null || dto.getModel().isEmpty() ? vehicle.getModel() : dto.getModel().toLowerCase());
             vehicle.setMake(dto.getMake() == null || dto.getMake().isEmpty() ? vehicle.getMake() : dto.getMake().toLowerCase());
             vehicle.setReleaseYear(dto.getReleaseYear() == null ? vehicle.getReleaseYear() : dto.getReleaseYear());
-            vehicle.setColor(dto.getColor() == null ? vehicle.getColor() : dto.getColor().toLowerCase());
+            vehicle.setColor(dto.getColor() == null || dto.getColor().isEmpty() ? vehicle.getColor() : dto.getColor().toLowerCase());
             vehicle.setSold(dto.getSold() == null ? vehicle.getSold() : dto.getSold());
             vehicle.setUpdated(LocalDateTime.now());
 

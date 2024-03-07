@@ -16,14 +16,14 @@ export class TabelaVeiculosComponent implements OnInit {
   id: number = 0
   update: Boolean = false
 
-  vehiclesUnsold: number = 0
+  vehiclesUnsold: string = ''
   vehicleByMake: string = ''
-  vehicleByMakeDisplayed: number = 0
-  vehicleByDecade: number = 0
-  vehicleByDecadeDisplayed: number = 0
+  vehicleByMakeDisplayed: string = ''
+  vehicleByDecade: string = ''
+  vehicleByDecadeDisplayed: string = ''
 
   vehicleParameterMake: string = ''
-  vehicleParameterReleaseYear: number = 0
+  vehicleParameterReleaseYear: string = ''
   vehicleParameterColor: string = ''
 
   public member: any = {
@@ -66,10 +66,12 @@ export class TabelaVeiculosComponent implements OnInit {
         console.log(erro)
       }
     )
+    this.getCountUnsoldVehicles()
+    this.clearCountInputs()
   }
 
   getAllVehiclesWithParameters() {
-    this.veiculosService.getAllVehiclesWithParameters(this.vehicleParameterMake, this.vehicleParameterReleaseYear, this.vehicleParameterColor).subscribe(
+    this.veiculosService.getAllVehiclesWithParameters(this.vehicleParameterMake, parseInt(this.vehicleParameterReleaseYear), this.vehicleParameterColor).subscribe(
       res => {
         this.vehicle = res.data
       },
@@ -77,6 +79,7 @@ export class TabelaVeiculosComponent implements OnInit {
         console.log(erro)
       }
     )
+    this.clearParameters()
   }
 
   getCountUnsoldVehicles() {
@@ -91,7 +94,7 @@ export class TabelaVeiculosComponent implements OnInit {
   }
 
   getCountVehiclesByDecade() {
-    this.veiculosService.getCountVehiclesByDecade(this.vehicleByDecade).subscribe(
+    this.veiculosService.getCountVehiclesByDecade(parseInt(this.vehicleByDecade)).subscribe(
       res => {
         this.vehicleByDecadeDisplayed = res.data
       },
@@ -129,6 +132,7 @@ export class TabelaVeiculosComponent implements OnInit {
         this.getAllVehicle()
       }
     )
+    this.clearInputFormAdd()
   }
 
   deleteVehicle(id: any) {
@@ -160,6 +164,7 @@ export class TabelaVeiculosComponent implements OnInit {
         }
       })
     }
+    this.clearInputFormEdit()
   }
 
   verificaApenasUmVazio(): number {
@@ -172,6 +177,44 @@ export class TabelaVeiculosComponent implements OnInit {
     }
 
     return countVazios;
+  }
+
+  clearInputFormAdd() {
+    this.vehicleForm.controls['model'].setValue('');
+    this.vehicleForm.controls['make'].setValue('');
+    this.vehicleForm.controls['releaseYear'].setValue('');
+    this.vehicleForm.controls['color'].setValue('');
+  }
+
+  clearInputFormEdit() {
+    this.member1.model = ''
+    this.member1.make = ''
+    this.member1.releaseYear = ''
+    this.member1.color = ''
+    this.member1.sold = ''
+  }
+
+  clearParameters() {
+    this.vehicleParameterMake = ''
+    this.vehicleParameterReleaseYear = ''
+    this.vehicleParameterColor = ''
+  }
+
+  clearCountInputs() {
+    this.vehicleByMake = ''
+    this.vehicleByMakeDisplayed = ''
+    this.vehicleByDecade = ''
+    this.vehicleByDecadeDisplayed = ''
+  }
+
+  clearModal() {
+    this.member1 = {
+      model: '',
+      make: '',
+      releaseYear: '',
+      color: '',
+      sold: '',
+    }
   }
 
   openModal(
@@ -190,5 +233,10 @@ export class TabelaVeiculosComponent implements OnInit {
       sold: sold,
     }
     this.update = true
+  }
+  
+  public closeModal() {
+    this.update = false
+    this.clearModal()
   }
 }

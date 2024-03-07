@@ -46,6 +46,26 @@ h3 {
     cursor: pointer;
 }
 
+.inputModel {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ffff;
+    font-size: 3rem;
+    margin-right: 2rem;
+    padding-top: 0.8rem ;
+    border-radius: 0.3rem 0.3rem 0 0;
+    
+    color: #ffff;
+}
+
+.inputModel:focus {
+    outline: none;
+}
+
+.inputModel::placeholder {
+    font-size: 2rem;
+}
+
 
 .input {
     background-color: transparent;
@@ -72,7 +92,7 @@ h3 {
     width: 100%;
     padding: 2rem;
     border-collapse: collapse;
-    margin: 5rem 0;
+    margin: 3rem 0;
 }
 
 .table, th,td {
@@ -85,7 +105,7 @@ th {
     background-color: rgb(0, 0, 0);
 }
 
-tr:nth-child(odd) {
+tr:nth-child(even) {
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(120,77,228,1) 0%, rgba(218,80,224,1) 100%);
 }
 
@@ -111,6 +131,12 @@ tr:nth-child(odd) {
     background: linear-gradient(0deg, rgb(78, 175, 122) 0%, rgba(17, 77, 25, 0.37) 100%);
 }
 
+.container-quants {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .container-quant {
     display: flex;
     flex-direction: column;
@@ -130,7 +156,7 @@ tr:nth-child(odd) {
     align-self: start;
     align-items: start;
     justify-content: start;
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
 }
 
 .btn_remove {
@@ -159,4 +185,19 @@ tr:nth-child(odd) {
 
 .mt {
     margin-top: 2rem
+}
+
+.edit {
+    z-index: 1;
+    position: absolute;
+    background-color: #00000096;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    top: 30%;
+    right: 40%;
+    padding: 2rem;
+    border: 1.5px solid #a69e9e;
+    border-radius: 0.4rem;
+    align-items: center;
 }
