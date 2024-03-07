@@ -14,13 +14,13 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     List<Vehicle> getAllVehicleWithParameters(String make, Integer releaseYear, String color);
 
     @Query(value = "SELECT COUNT(*) FROM vehicle WHERE sold = false", nativeQuery = true)
-    Integer getCountUnsoldVehicles();
+    Long getCountUnsoldVehicles();
 
     @Query(value = "SELECT COUNT(*) FROM vehicle WHERE release_year >= :startYear AND release_year < :endYear", nativeQuery = true)
-    Integer getCountVehiclesByDecade(Integer startYear, Integer endYear);
+    Long getCountVehiclesByDecade(Integer startYear, Integer endYear);
 
     @Query(value = "SELECT COUNT(*) FROM vehicle WHERE make = :make", nativeQuery = true)
-    Integer getCountByMake(String make);
+    Long getCountByMake(String make);
 
     @Query(value = "SELECT * FROM vehicle WHERE created >= DATEADD('DAY', -7, CURRENT_DATE())", nativeQuery = true)
     List<Vehicle> getAllRegisteredVehiclesAtLastWeek();
